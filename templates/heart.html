@@ -1,0 +1,128 @@
+{% extends "layout.html" %} {% block body %}
+<br />
+<div class="container">
+  <h1 class="text-center"><u>Heart Disease Prediction</u></h1>
+</div>
+<div class="container-castome mx-auto">
+  {% with messages = get_flashed_messages(with_categories=true) %} {% if
+  messages %}
+  <div class="flashes">
+    {% for category, message in messages %}
+    <div class="alert alert-{{ category }}" role="alert">{{ message }}</div>
+    {% endfor %}
+  </div>
+  {% endif %} {% endwith %}
+  <form action="{{ url_for('predict_heart') }}" method="POST">
+    <div class="form-group">
+      <label class="lb-lg">Age</label>
+      <input
+        type="text"
+        class="form-control"
+        name="age"
+        placeholder="Age (years) eg. 34"
+      />
+    </div>
+
+    <div class="form-group">
+      <label class="lb-lg">Sex</label>
+      <select class="form-control" name="sex">
+        <option>Select</option>
+        <option value="0">Female</option>
+        <option value="1">Male</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label class="lb-lg">Chest Pain</label>
+      <select class="form-control" name="chestpaintype">
+        <option>Select</option>
+        <option value="1">Yes</option>
+        <option value="0">No</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label class="lb-lg">Resting Blood Pressure</label>
+      <input
+        type="text"
+        class="form-control"
+        name="trestbps"
+        placeholder="value in mm Hg eg. 120"
+      />
+    </div>
+
+    <div class="form-group">
+      <label class="lb-lg">Serum Cholestoral</label>
+      <input
+        type="text"
+        class="form-control"
+        name="serumcholestoral"
+        placeholder="value in mg/dl eg. 250"
+      />
+    </div>
+
+    <div class="form-group">
+      <label class="lb-lg">Resting Electrocardiographic</label>
+      <select class="form-control" name="restecg">
+        <option>Select</option>
+        <option value="0">Normal</option>
+        <option value="1">Abnormal</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label class="lb-lg">Maximum Heart Rate Achieved</label>
+      <input
+        type="text"
+        class="form-control"
+        name="thalach"
+        placeholder=" eg. 160"
+      />
+    </div>
+
+    <div class="form-group">
+      <label class="lb-lg">Exercise Induced Angina</label>
+      <select class="form-control" name="exang">
+        <option>Select</option>
+        <option value="1">Yes</option>
+        <option value="0">No</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label class="lb-lg">Oldpeak</label>
+      <input
+        type="text"
+        class="form-control"
+        name="oldpeak"
+        placeholder="Oldpeak eg. 0.8"
+      />
+    </div>
+
+    <div class="form-group">
+      <label class="lb-lg">Slope</label>
+      <input
+        type="text"
+        class="form-control"
+        name="slope"
+        placeholder="Peak Excercise ST segment"
+      />
+    </div>
+
+    <div class="form-group">
+      <label class="lb-lg">Thal</label>
+      <select class="form-control" name="Thalassemia">
+        <option>Select</option>
+        <option value="0">Normal</option>
+        <option value="1">FixedDefect</option>
+        <option value="2">ReversableDefect</option>
+      </select>
+    </div>
+
+    <div class="text-center mb-5 pb-4">
+      <input type="submit" class="my-cta-button" value="Predict" />
+    </div>
+  </form>
+</div>
+
+{% endblock %}

@@ -1,0 +1,121 @@
+{%extends "layout.html"%}
+
+{% block body %}
+<br>
+<div class="container px-2 col-lg-5 col-sm-12">
+    <h1 class="text-center">Stroke Prediction Test</h1>
+</div>
+<div class="container-castome mx-auto">
+  {% with messages = get_flashed_messages(with_categories=true) %} {% if
+  messages %}
+  <div class="flashes">
+    {% for category, message in messages %}
+    <div class="alert alert-{{ category }}" role="alert">{{ message }}</div>
+    {% endfor %}
+  </div>
+  {% endif %} {% endwith %}
+    <form action="{{url_for('predict_stroke')}}" method="POST">
+        <div class="form-group">
+            <label class="lb-lg">Gender</label>
+            <select class="form-control" name="gender">
+                <option>Select</option>
+                <option value="0">Female</option>
+                <option value="1">Male</option>
+            </select>
+        </div>
+        
+        <div class="form-group">
+            <label class="lb-lg">Age</label>
+            <input
+              type="text"
+              class="form-control"
+              name="age"
+              placeholder="Age (years) eg. 45"
+            />
+        </div>
+
+        <div class="form-group">
+            <label class="lb-lg">Hyper Tension</label>
+            <select class="form-control" name="hypertnsion">
+                <option>Select</option>
+                <option value="1">Yes</option>
+                <option value="0">No</option>
+            </select>
+        </div>
+        
+        <div class="form-group">
+            <label class="lb-lg">Heart Disease</label>
+            <select class="form-control" name="heart disease">
+                <option>Select</option>
+                <option value="1">Yes</option>
+                <option value="0">No</option>
+            </select>
+        </div>
+        
+        <div class="form-group">
+            <label class="lb-lg">Marriage Status</label>
+            <select class="form-control" name="marital status">
+                <option>Select</option>
+                <option value="1">Married</option>
+                <option value="0">Unmarried</option>
+            </select>
+        </div>
+        
+        <div class="form-group">
+            <label class="lb-lg">Residence Type</label>
+            <select class="form-control" name="residence">
+                <option>Select</option>
+                <option value="1">Urban</option>
+                <option value="0">Rural</option>
+            </select>
+        </div>
+        
+        <div class="form-group">
+            <label class="lb-lg">Average Glucose Level</label>
+            <input
+              type="text"
+              class="form-control"
+              name="glucose level"
+              placeholder="in Blood eg. 50.00-280.00"
+            />
+        </div>
+
+        <div class="form-group">
+            <label class="lb-lg">BMI</label>
+            <input
+              type="text"
+              class="form-control"
+              name="body mass index"
+              placeholder="Body Mass Index e.g. 10.00-100.00"
+            />
+        </div>
+
+        <div class="form-group">
+            <label class="lb-lg">Working Status</label>
+            <select class="form-control" name="work">
+                <option>Select</option>
+                <option value="0">Govt_job</option>
+                <option value="1">Never_worked</option>
+                <option value="2">Private</option>
+                <option value="3">Self-employed</option>
+                <option value="4">children</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label class="lb-lg">Smoking Status</label>
+            <select class="form-control" name="smoking status">
+                <option>Select</option>
+                <option value="0">Unknown</option>
+                <option value="1">Formerly Smoked</option>
+                <option value="2">Never Smoked</option>
+                <option value="3">Smokes</option>
+            </select>
+        </div>
+    
+        <div class="text-center mb-5 pb-4">
+            <input type="submit" class="my-cta-button" value="Predict" />
+          </div>
+    </form>
+</div>
+{% endblock %}
